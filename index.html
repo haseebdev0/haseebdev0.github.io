@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdul Haseeb — Software Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #1a1a24;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #f0f0f5;
+    --text2: #9090a8;
+    --text3: #606075;
+    --accent: #7c6af5;
+    --accent2: #a594f9;
+    --accent-glow: rgba(124,106,245,0.15);
+    --teal: #2dd4bf;
+    --green: #4ade80;
+    --amber: #fbbf24;
+    --coral: #fb7185;
+    --blue: #60a5fa;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem;
+    height: 60px;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; font-weight: 500;
+    color: var(--accent2);
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    font-size: 13px; color: var(--text2);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* SECTIONS */
+  section { padding: 5rem 0; }
+  .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding-top: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-glow {
+    position: absolute;
+    top: 20%; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(124,106,245,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; color: var(--accent2);
+    background: rgba(124,106,245,0.1);
+    border: 1px solid rgba(124,106,245,0.2);
+    padding: 6px 14px; border-radius: 20px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 .name-line { display: block; }
+  .hero h1 .role-line {
+    display: block;
+    color: var(--text2);
+    font-weight: 300;
+  }
+  .hero-desc {
+    font-size: 16px;
+    color: var(--text2);
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent);
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: var(--radius-sm);
+    font-size: 14px; font-weight: 500;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent;
+    color: var(--text2);
+    padding: 10px 22px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border2);
+    font-size: 14px; font-weight: 400;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--text); transform: translateY(-1px); }
+  .hero-scroll {
+    position: absolute; bottom: 2rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: var(--text3); font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, transparent, var(--text3)); }
+
+  /* SECTION HEADERS */
+  .section-header { margin-bottom: 3rem; }
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--accent);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-size: 28px; font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  /* ABOUT */
+  #about { background: var(--bg2); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--text2);
+    margin-bottom: 1rem;
+    line-height: 1.8;
+  }
+  .skills-block { display: flex; flex-direction: column; gap: 1.25rem; }
+  .skill-category-label {
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+  .skills-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text2);
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 16px;
+  }
+  .project-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--card-accent, var(--accent));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .project-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-3px);
+  }
+  .project-card:hover::before { opacity: 1; }
+  .card-header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  .card-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .card-links-row { display: flex; gap: 6px; }
+  .icon-btn {
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-sm);
+    color: var(--text2);
+    font-size: 14px;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+    cursor: pointer;
+  }
+  .icon-btn:hover { border-color: var(--accent); color: var(--accent2); background: var(--accent-glow); }
+  .card-title {
+    font-size: 16px; font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text3);
+  }
+
+  /* CONTACT */
+  #contact { background: var(--bg2); }
+  .contact-box {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius);
+    padding: 3rem;
+    text-align: center;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+  .contact-box h3 {
+    font-size: 24px; font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+  .contact-box p {
+    color: var(--text2);
+    margin-bottom: 2rem;
+    font-size: 15px;
+  }
+  .contact-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .contact-link {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 20px;
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-sm);
+    font-size: 14px; color: var(--text2);
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--text); background: var(--accent-glow); }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 12px;
+    color: var(--text3);
+    font-family: 'JetBrains Mono', monospace;
+    border-top: 1px solid var(--border);
+  }
+
+  /* DIVIDER */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* SVG ICONS inline */
+  .svg-icon { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; vertical-align: -3px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 1.25rem; }
+    .container { padding: 0 1.25rem; }
+    .contact-box { padding: 2rem 1.5rem; }
+  }
+  @media (max-width: 400px) {
+    .nav-links a:not(:first-child):not(:last-child) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">AH.dev</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-eyebrow">Available for opportunities</div>
+    <h1>
+      <span class="name-line">Abdul Haseeb</span>
+      <span class="role-line">Software Engineering Student</span>
+    </h1>
+    <p class="hero-desc">
+      I build production-ready Android apps, full-stack web platforms, and AI-driven applications. Focused on engineering high-quality, documented, and architected codebases.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">
+        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M3 7l9 6 9-6M3 17l9-6 9 6"/></svg>
+        View my work
+      </a>
+      <a href="#contact" class="btn-secondary">
+        Get in touch
+        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    scroll
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="about">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">01 — About</div>
+      <h2 class="section-title">A bit about me</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I am a final-year Software Engineering student passionate about full-stack development, mobile ecosystem design, and intelligent software systems.</p>
+        <p>My technical domain spans across engineering native Android apps, building relational enterprise systems in Django, and integrating machine learning processing modules. I balance code efficiency with clean system design methodologies, always focusing on structural software architecture.</p>
+        <p>Currently looking for internship and professional development roles where I can deliver impactful and enterprise-grade software solutions.</p>
+      </div>
+      <div class="skills-block">
+        <div>
+          <div class="skill-category-label">Mobile Development</div>
+          <div class="skills-chips">
+            <span class="chip">Android Studio</span>
+            <span class="chip">Java (Native)</span>
+            <span class="chip">SQLite Persistence</span>
+            <span class="chip">Retrofit APIs</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-category-label">Backend & Web</div>
+          <div class="skills-chips">
+            <span class="chip">Python</span>
+            <span class="chip">Django Framework</span>
+            <span class="chip">Django ORM</span>
+            <span class="chip">RESTful Web Services</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-category-label">Software Design</div>
+          <div class="skills-chips">
+            <span class="chip">SRS Documentation</span>
+            <span class="chip">UML Architecture</span>
+            <span class="chip">System Requirements</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-category-label">AI & Analytics</div>
+          <div class="skills-chips">
+            <span class="chip">Machine Learning</span>
+            <span class="chip">Audio Signal Processing</span>
+            <span class="chip">Data Analysis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="projects">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">02 — Projects</div>
+      <h2 class="section-title">Things I've built</h2>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card" style="--card-accent: #2dd4bf;">
+        <div class="card-header">
+          <div class="card-icon" style="background: rgba(45,212,191,0.1); color: #2dd4bf;">
+            <svg style="width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div class="card-links-row">
+            <a href="https://github.com/haseebdev0/Smart-Health-Tracker-Android" class="icon-btn" target="_blank" title="GitHub">
+              <svg style="width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="card-title">Smart Health Tracker</div>
+        <div class="card-desc">Native Android application featuring asynchronous REST API consumption using Retrofit, localized health metrics calculators, tracking counters, and structured CRUD medicine logs via local SQLite database management.</div>
+        <div class="card-tags">
+          <span class="tag">Android Studio</span>
+          <span class="tag">Java</span>
+          <span class="tag">SQLite</span>
+          <span class="tag">Retrofit API</span>
+        </div>
+      </div>
+
+      <div class="project-card" style="--card-accent: #4ade80;">
+        <div class="card-header">
+          <div class="card-icon" style="background: rgba(74,222,128,0.1); color: #4ade80;">
+            <svg style="width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="card-links-row">
+            <a href="https://github.com/haseebdev0/Employee-Management-System-Django" class="icon-btn" target="_blank" title="GitHub">
+              <svg style="width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="card-title">Employee Management System</div>
+        <div class="card-desc">Full-stack corporate web system handling administrative CRUD mechanisms. Features dynamic database queries via Django ORM, relational mapping using Foreign Keys for organizational hierarchies, and integrated role-based security panels.</div>
+        <div class="card-tags">
+          <span class="tag">Django</span>
+          <span class="tag">Python</span>
+          <span class="tag">SQL / ORM</span>
+          <span class="tag">Bootstrap 5</span>
+        </div>
+      </div>
+
+      <div class="project-card" style="--card-accent: #a594f9;">
+        <div class="card-header">
+          <div class="card-icon" style="background: rgba(165,148,249,0.1); color: #a594f9;">
+            <svg style="width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          </div>
+          <div class="card-links-row">
+            <a href="https://github.com/haseebdev0/AI-Noise-Pollution-Detector" class="icon-btn" target="_blank" title="GitHub">
+              <svg style="width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="card-title">AI Noise Pollution Detector</div>
+        <div class="card-desc">Machine learning classification model designed to detect environmental acoustics and noise thresholds. Parses incoming audio payloads via signal feature extraction techniques to distinguish hazardous acoustic levels.</div>
+        <div class="card-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Machine Learning</span>
+          <span class="tag">Audio Processing</span>
+        </div>
+      </div>
+
+      <div class="project-card" style="--card-accent: #fbbf24;">
+        <div class="card-header">
+          <div class="card-icon" style="background: rgba(251,191,36,0.1); color: #fbbf24;">
+            <svg style="width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <div class="card-links-row">
+            <a href="https://github.com/haseebdev0/Online-Food-Delivery-SRS" class="icon-btn" target="_blank" title="GitHub">
+              <svg style="width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="card-title">Online Food Delivery — SRS</div>
+        <div class="card-desc">An extensive Software Requirements Specification mapping operational parameters of digital ecosystem design. Covers business modeling rules, actor use cases, and complex software architectural design metrics.</div>
+        <div class="card-tags">
+          <span class="tag">Software Architecture</span>
+          <span class="tag">SRS Scope</span>
+          <span class="tag">UML</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="contact">
+  <div class="container">
+    <div class="section-header" style="text-align:center;">
+      <div class="section-eyebrow">03 — Contact</div>
+      <h2 class="section-title">Let's connect</h2>
+    </div>
+    <div class="contact-box">
+      <h3>Open to new opportunities</h3>
+      <p>Whether it's a technical role, full-time engineering opportunity, or structured development projects, feel free to connect.</p>
+      <div class="contact-links">
+        <a href="mailto:abdulhaseeb.dev@gmail.com" class="contact-link">
+          <svg class="svg-icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email me
+        </a>
+        <a href="https://github.com/haseebdev0" class="contact-link" target="_blank">
+          <svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+        <a href="https://linkedin.com/in/abdulhaseeb-dev" class="contact-link" target="_blank">
+          <svg class="svg-icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Abdul Haseeb &nbsp;·&nbsp; Built with HTML, CSS & JS &nbsp;·&nbsp; 2026
+</footer>
+
+</body>
+</html>
